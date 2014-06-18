@@ -1,0 +1,8 @@
+# Mandatory
+ffmpegthumbnailer
+xdotool
+python-dbus
+dbus-x11
+
+# Optionally
+python-pylirc

@@ -1,0 +1,25 @@
+# This is an example configuration for MediaCatalog
+# 
+# Category			# Startcategory section
+#   Name Video			# Category name 
+#   Path /home/dimer/Видео	# Path to category folder
+#   Selected true		# Set true if you want to selec this category by default. First category wiil be select by default
+# End				# End category section
+#
+# Player mplayer2		# Set player command
+#
+# FileIconSize 320		# Set files icons size
+# FolderIconSize 128		# Set folders icons size
+#
+# Logfile /tmp/mediacatalog.log # Set log file
+# Encoding utf-8		# Set system encoding. Need for python 2
+# LogLevel debug		# Set log level
+# EnableConsoleLog true		# Set true for console log output
+#
+# Default values:
+#    FileIconSize	64
+#    FolderIconSize	64
+#    LogFile		/tmp/mediacatalog.log
+#    Encoding		utf-8
+#    LogLevel		info
+#    EnableConsoleLog	false
