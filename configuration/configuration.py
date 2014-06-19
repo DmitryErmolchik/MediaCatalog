@@ -9,6 +9,7 @@ from configuredlogger import ConfigureLogger
 class Configuration(object):
 
     def __init__(self):
+        self.version = "1.0 RC1"
         self.categories = []
         self.selectedCategory = 0;
         self.player = None
@@ -81,6 +82,7 @@ class Configuration(object):
         if self.player == None or self.player == '':
             self.logger.getLogger().error('Player command not found in configuration file. Please add "Player <player command>" to "' + self.home + self.appDir + self.configFile + '"')
             exit(1)
+        self.logger.getLogger().info('Version: ' + self.version)
         self.logger.getLogger().info('Player: ' + self.player)
         self.logger.getLogger().info('FileIconSize: ' + unicode(self.fileIconSize))
         self.logger.getLogger().info('FolderIconSize: ' + unicode(self.folderIconSize))
@@ -107,6 +109,9 @@ class Configuration(object):
             for extension in picFormat.get_extensions():
                 extensions.append(extension)
         return extensions
+
+    def getVersion(self):
+        return self.version
 
     def getCategories(self):
         return self.categories
