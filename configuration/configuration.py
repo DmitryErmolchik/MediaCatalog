@@ -67,7 +67,7 @@ class Configuration(object):
                             parseCategory = False
                             i += 1
         else:
-            sys.stderr.write('Can not find configuration file\n')
+            sys.stderr.write('Can not find configuration file at "' + self.home + self.appDir + self.configFile + '"')
             sys.exit(1)
 
         if (not isdir(self.getMiniatureDir())):
