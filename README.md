@@ -20,3 +20,6 @@ Install dependencies from "doc/dependences"
 Create configuration file "~/.mediacatalog/mediacatalog.conf"
 
 For documentation and example of configuration file see "doc/mediacatalog.conf.example"
+
+	Links
+All icons from http://www.clker.com/
