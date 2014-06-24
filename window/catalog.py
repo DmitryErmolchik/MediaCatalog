@@ -56,11 +56,11 @@ class Catalog(GObject.GObject):
         
         for targetDir in self.__getDirs__(path):
             if targetDir == '..':
-                pixbuf = Pixbuf.new_from_file_at_size(self.configuration.getAppStartDir() + '/icons/go-back.svg', self.configuration.getFolderIconSize(), self.configuration.getFolderIconSize())
+                pixbuf = Pixbuf.new_from_file_at_size(self.configuration.getTheme().getBackIcon(), self.configuration.getFolderIconSize(), self.configuration.getFolderIconSize())
                 backPath = path[0:path.rindex('/')]
                 self.liststore.append([pixbuf, '', backPath, True])
             else:
-                pixbuf = Pixbuf.new_from_file_at_size(self.configuration.getAppStartDir() + '/icons/folder.svg', self.configuration.getFolderIconSize(), self.configuration.getFolderIconSize())
+                pixbuf = Pixbuf.new_from_file_at_size(self.configuration.getTheme().getFolderIcon(), self.configuration.getFolderIconSize(), self.configuration.getFolderIconSize())
                 self.liststore.append([pixbuf, targetDir, join(path, targetDir), True])
 
         for targetFile in self.__getFiles__(path):
@@ -69,9 +69,9 @@ class Catalog(GObject.GObject):
                 try:
                     pixbuf = Pixbuf.new_from_file_at_size(miniature, self.configuration.getFileIconSize(), self.configuration.getFileIconSize())
                 except GLib.GError:
-                    pixbuf = Pixbuf.new_from_file_at_size(self.configuration.getAppStartDir() + '/icons/movie.svg', self.configuration.getFolderIconSize(), self.configuration.getFolderIconSize())
+                    pixbuf = Pixbuf.new_from_file_at_size(self.configuration.getTheme().getVideoIcon(), self.configuration.getFolderIconSize(), self.configuration.getFolderIconSize())
             else:
-                pixbuf = Pixbuf.new_from_file_at_size(self.configuration.getAppStartDir() + '/icons/movie.svg', self.configuration.getFolderIconSize(), self.configuration.getFolderIconSize())
+                pixbuf = Pixbuf.new_from_file_at_size(self.configuration.getTheme().getVideoIcon(), self.configuration.getFolderIconSize(), self.configuration.getFolderIconSize())
                 needGenerateMiniature = True
 
             self.liststore.append([pixbuf, targetFile, join(path, targetFile), False])

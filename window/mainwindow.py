@@ -8,7 +8,7 @@ class MainWindow(Gtk.Window):
     def __init__(self, configuration):
         Gtk.Window.__init__(self, title=u'Media catalog v' + configuration.getVersion())
 
-        self.set_icon_from_file(configuration.getAppStartDir() + '/icons/mediacatalog.svg')
+        self.set_icon_from_file(configuration.getAppStartDir() + 'mediacatalog.svg')
 
         self.set_size_request(1280, 720)
         self.maximize()

@@ -5,11 +5,12 @@ import sys
 from gi.repository.GdkPixbuf import Pixbuf
 from os import makedirs
 from configuredlogger import ConfigureLogger
+from themeconfig import ThemeConfig
 
 class Configuration(object):
 
     def __init__(self):
-        self.version = "1.0 RC1"
+        self.version = "1.0 RC2"
         self.categories = []
         self.selectedCategory = 0;
         self.player = None
@@ -25,6 +26,7 @@ class Configuration(object):
         self.encoding = 'utf-8'
         self.logLevel = 'info'
         self.enableConsoleLog = False
+        self.themesFolder = self.appStartDir + 'themes'
 
         parseCategory = False
         name = None
@@ -56,6 +58,8 @@ class Configuration(object):
                             self.logLevel = line[len(words[0]):].strip().upper()
                         elif words[0].lower() == 'enableconsolelog' and line.strip()[len(words[0]):].strip().lower() == 'true':
                             self.enableConsoleLog = True
+                        elif words[0].lower() == 'themesfolder':
+                            self.themesFolder = line[len(words[0]):].strip()
                     elif parseCategory:
                         if words[0].lower() == 'name':
                             name = line.strip()[len(words[0]):].strip()
@@ -68,7 +72,7 @@ class Configuration(object):
                             parseCategory = False
                             i += 1
         else:
-            sys.stderr.write('Can not find configuration file at "' + self.home + self.appDir + self.configFile + '"')
+            self.logger.getLogger().error('Can not find configuration file at "' + self.home + self.appDir + self.configFile + '"')
             sys.exit(1)
 
         if (not isdir(self.getMiniatureDir())):
@@ -90,6 +94,7 @@ class Configuration(object):
         self.logger.getLogger().info('Encoding: ' + self.encoding)
         self.logger.getLogger().info('LogLevel: ' + self.logLevel)
         self.logger.getLogger().info('EnableConsoleLog: ' + unicode(self.enableConsoleLog))
+        self.logger.getLogger().info('ThemesFolder: ' + self.themesFolder)
         
         if len(self.categories) > 0:
             self.logger.getLogger().info('Categories:')
@@ -101,6 +106,9 @@ class Configuration(object):
             exit(1)
             
         self.logger.setLogLevel(self.logLevel)
+        
+        self.theme = ThemeConfig(self.themesFolder, self.logger.getLogger(), self.encoding)
+        self.theme.readTheme(self.theme.getThemeFolders()[0])
 
     def __initAvailablePicturesExtensions__(self):
         extensions = []
@@ -151,3 +159,6 @@ class Configuration(object):
     
     def getLogFile(self):
         return self.logFile
+    
+    def getTheme(self):
+        return self.theme
