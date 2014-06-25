@@ -82,10 +82,23 @@ class Configuration(object):
         if self.enableConsoleLog:
             self.logger.plugOnConsoleHandler()
 
-        # Log data from config file
+        self.__checkMinimalConfiguration()
+        self.__showConfiguration__()
+
+        self.logger.setLogLevel(self.logLevel)
+        
+        self.theme = ThemeConfig(self.themesFolder, self.logger.getLogger(), self.encoding)
+        self.theme.readTheme(self.theme.getThemeFolders()[0])
+
+    def __checkMinimalConfiguration(self):
         if self.player == None or self.player == '':
             self.logger.getLogger().error('Player command not found in configuration file. Please add "Player <player command>" to "' + self.home + self.appDir + self.configFile + '"')
             exit(1)
+        if len(self.categories) == 0:
+            self.logger.getLogger().error('No categories found. Please add category to "' + self.home + self.appDir + self.configFile + '"')
+            exit(1)
+
+    def __showConfiguration__(self):
         self.logger.getLogger().info('Version: ' + self.version)
         self.logger.getLogger().info('Player: ' + self.player)
         self.logger.getLogger().info('FileIconSize: ' + unicode(self.fileIconSize))
@@ -101,14 +114,6 @@ class Configuration(object):
             for category in self.categories:
                 self.logger.getLogger().info('Name: ' + category['name'].decode(self.encoding) + '   Path: ' + category['path'].decode(self.encoding))
             self.logger.getLogger().info('Selected category: ' + unicode(self.selectedCategory) + " (" + self.categories[self.selectedCategory]['name'].decode(self.encoding) + ")")
-        else:
-            self.logger.getLogger().error('No categories found. Please add category to "' + self.home + self.appDir + self.configFile + '"')
-            exit(1)
-            
-        self.logger.setLogLevel(self.logLevel)
-        
-        self.theme = ThemeConfig(self.themesFolder, self.logger.getLogger(), self.encoding)
-        self.theme.readTheme(self.theme.getThemeFolders()[0])
 
     def __initAvailablePicturesExtensions__(self):
         extensions = []
