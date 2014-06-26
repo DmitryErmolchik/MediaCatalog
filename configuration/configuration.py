@@ -167,3 +167,11 @@ class Configuration(object):
     
     def getTheme(self):
         return self.theme
+    
+    def getWidth(self):
+        if self.fileIconSize > self.folderIconSize:
+            return self.fileIconSize
+        elif (self.fileIconSize < self.folderIconSize):
+            return self.folderIconSize
+        else:
+            return self.fileIconSize

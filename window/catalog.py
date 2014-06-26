@@ -19,6 +19,7 @@ class Catalog(GObject.GObject):
         self.liststore = Gtk.ListStore(Pixbuf, str, str, bool)
 
         self.catalogView = Gtk.IconView.new()
+        self.catalogView.set_item_width(configuration.getWidth())
         self.catalogView.set_model(self.liststore)
         self.catalogView.set_pixbuf_column(0)
         self.catalogView.set_text_column(1)

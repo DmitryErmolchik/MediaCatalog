@@ -1,0 +1,35 @@
+begin
+        prog = mediacatalog
+        button = KEY_PLAYPAUSE
+        config = Return
+end
+
+begin
+        prog = mediacatalog
+        button = KEY_LEFT
+        config = Left
+end
+
+begin
+        prog = mediacatalog
+        button = KEY_UP
+        config = Up
+end
+
+begin
+        prog = mediacatalog
+        button = KEY_RIGHT
+        config = Right
+end
+
+begin
+        prog = mediacatalog
+        button = KEY_DOWN
+        config = Down
+end
+
+begin
+        prog = mediacatalog
+        button = KEY_MENU
+        config = Tab
+end
