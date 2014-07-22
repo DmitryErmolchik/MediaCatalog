@@ -10,7 +10,7 @@ from themeconfig import ThemeConfig
 class Configuration(object):
 
     def __init__(self):
-        self.version = "1.0 RC2"
+        self.version = "1.0"
         self.categories = []
         self.selectedCategory = 0;
         self.player = None
